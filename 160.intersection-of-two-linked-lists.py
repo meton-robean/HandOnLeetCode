@@ -44,6 +44,29 @@ class Solution(object):
         return None
 
 
+##solution2 
+# 事实上，可以不用计算两个链表的长度，因为本质上我们关心的是让两个链表的指针同时到达交叉点。
+# 我们可以定义两个指针，让它们都将两个链表都遍历一遍，那么它们走的总长度是一样的，
+# 倘若两个链表相交，那么这两个指针一定会在某个地方相等。
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        if not headA or not headB:
+            return None
+        p, q = headA, headB
+        while p and q and p != q:
+            p = p.next
+            q = q.next
+            if p == q:
+                return p
+            if not p:
+                p = headB
+            if not q:
+                q = headA
+        return p
 
 
 # @lc code=end
