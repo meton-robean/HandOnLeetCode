@@ -67,6 +67,32 @@ class Solution(object):
         return head
 
 
+###solution2 
+#使用两个dummy node, 使用count计数器，如果计数是奇数，将当前节点拆接到odd dummy,否则到even dummy
+class Solution(object):
+    def oddEvenList(self, head):
+        oddHead = ListNode(0)
+        evenHead = ListNode(0)
+        
+        odd = oddHead
+        even = evenHead
+        cur = head
+        i = 1
+        while cur:
+            if i % 2 == 1:
+                odd.next = cur
+                odd = odd.next
+                i += 1
+                cur = cur.next
+            else:
+                even.next = cur
+                even = even.next
+                i += 1
+                cur = cur.next
+        even.next = None
+        odd.next = evenHead.next
+        return oddHead.next
+
 
 # @lc code=end
 
